@@ -1,32 +1,30 @@
-Massively by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+# Brandon Reyes | Data Analytics Portfolio
 
+## 🚀 View the Live Site
 
-This is Massively, a text-heavy, article-oriented design built around a huge background
-image (with a new parallax implementation I'm testing) and scroll effects (powered by
-Scrollex). A *slight* departure from all the one-pagers I've been doing lately, but one
-that fulfills a few user requests and makes use of some new techniques I've been wanting
-to try out. Enjoy it :)
+This portfolio is live at: https://brandonreyes.netlify.app/
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+---
 
-(* = not included)
+This repository contains the source code for my professional portfolio. I am a **Microsoft Certified Power BI & Fabric Developer** with a passion for turning data into clear, actionable insights.
 
-AJ
-aj@lkn.io | @ajlkn
+This site serves as a central hub to showcase my data projects, share insights through my blog, and connect with potential clients and collaborators.
 
+### Key Sections
+* A **Portfolio** of my data analytics and visualization projects.
+* A **Blog** where I share tutorials and insights on Power BI and data best practices (coming soon).
+* An **About Me** page to learn more about my background and expertise.
 
-Credits:
+### Technologies Used
+* HTML5
+* CSS3
+* JavaScript
+* Hosted on **Netlify**
 
-	Demo Images:
-		Unsplash (unsplash.com)
+### Connect With Me
+* **LinkedIn:** www.linkedin.com/in/brandoncrosbyreyes
+* **YouTube:** https://www.youtube.com/@crosbybiOfficial
 
-	Icons:
-		Font Awesome (fontawesome.io)
-
-	Other:
-		jQuery (jquery.com)
-		Scrollex (github.com/ajlkn/jquery.scrollex)
-		Responsive Tools (github.com/ajlkn/responsive-tools)
+---
+### Credits
+Design based on the 'Massively' template by **HTML5 UP**, used under the CCA 3.0 license.
