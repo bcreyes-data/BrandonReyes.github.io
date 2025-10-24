@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>My First Blog Post</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-PTYLY5EW12"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-PTYLY5EW12');
+	</script>
+
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<a href="index.html" class="logo">Brandon Reyes</a>
+		</header>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li><a href="index.html">Portfolio</a></li>
+				<li class="active"><a href="blog.html">Blog</a></li>
+				<li><a href="about.html">About</a></li>
+			</ul>
+			<ul class="icons alt">
+
+				<li><a href="https://www.youtube.com/@crosbybiOfficial" class="icon brands alt fa-youtube"
+						target="_blank" rel="noopener noreferrer"><span class="label">YouTube</span></a></li>
+				<li><a href="https://www.linkedin.com/in/brandoncrosbyreyes" class="icon brands alt fa-linkedin"
+						target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
+				<li><a href="https://bcreyes-data.github.io/crosbybi-website/" class="icon solid alt fa-briefcase"
+						target="_blank" rel="noopener noreferrer"><span class="label">Crosby BI</span></a></li>
+				<li><a href="https://github.com/breyes87/brandon_portfolio" class="icon brands alt fa-github"
+						target="_blank" rel="noopener noreferrer"><span class="label">GitHub</span></a></li>
+
+
+			</ul>
+		</nav>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Post -->
+			<section class="post">
+				<header class="major">
+					<span class="date">October 23, 2025</span>
+					<h1>Finding Clarity: A Simple Way to Tidy Up Your Power BI Model</h1>
+					<p>A guide on using a simple Tabular Editor script to disable default summarization, encouraging best practices for cleaner, more maintainable Power BI models.</p>
+				</header>
+				<div class="image main"><img src="images/power-bi-clarity-tabular-editor.png" alt="Illustration for tidying up a Power BI model using Tabular Editor" /></div>
+				<p>If you've spent some time in Power BI, you might have noticed how it automatically summarizes number columns. While well-intentioned and sometimes helpful, in my experience, I've found it best to turn these off and instead, create measures for any summarizations I need.  I could go into the reasoning behind why I recommend this approach, but I'll leave that for another blog post.  But here's the problem.  If you have a lot of columns that have summarization on, it will take time to go down the line, disabling summarization for each one. Thanksfully, there's a way to turn off summarization for all of them in one swipe using Tabular Editor and a simple script.</p>
+				
+				<h2>A Gentle Script for Instant Clarity</h2>
+				<p>This simple C# script works within Tabular Editor to review all the numeric columns in your model and set them to "Don't Summarize," all in one go.</p>
+<pre><code>// Find all numeric columns with summarization enabled and set to "Don't Summarize"
+var columnsToChange = Model.AllColumns
+    .Where(c => c.SummarizeBy != AggregateFunction.None &&
+           (c.DataType == DataType.Int64 ||
+            c.DataType == DataType.Double ||
+            c.DataType == DataType.Decimal ||
+            c.DataType == DataType.Integer))
+    .ToList();
+
+// Set them to "Don't Summarize"
+foreach(var column in columnsToChange)
+{
+    column.SummarizeBy = AggregateFunction.None;
+    // Log the change quietly to the output pane
+    Output($"Disabled summarization on: {column.DaxObjectFullName}");
+}
+
+// Single confirmation message at the end
+Info($"Process complete. Reviewed and updated {columnsToChange.Count} numeric columns to 'Don't Summarize'.");</code></pre>
+				
+				<h3>How to Use This Script:</h3>
+				<ol>
+					<li>Have your PBIX file open.</li>
+					<li>Open Tabular Editor and connect to your file.</li>
+					<li>Navigate to the "Advanced Scripting" pane.</li>
+					<li>Paste the script above and Run it.</li>
+					<li>Most importantly: Remember to click <strong>File > Save</strong> in Tabular Editor to bring these changes back into your Power BI model.</li>
+				</ol>
+
+				<h3>Why This Matters (The Deeper Benefit)</h3>
+				<p>Taking this small step encourages a more intentional approach to your data modeling. By turning off the defaults, we are forced to create the measures we need, which is best practice anyway. This not only makes our calculations more accurate and reliable but also makes the entire model easier for others (and our future selves!) to understand and maintain. It's about building a foundation of clarity.</p>
+				<p>If you're exploring ways to bring even more clarity and efficiency to your data, feel free to schedule a discovery call – I'd love to help.</p>
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<section>
+				<form method="post" data-netlify="true">
+					<div class="fields">
+						<div class="field">
+							<label for="name">Name</label>
+							<input type="text" name="name" id="name" />
+						</div>
+						<div class="field">
+							<label for="email">Email</label>
+							<input type="text" name="email" id="email" />
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="3"></textarea>
+						</div>
+					</div>
+					<ul class="actions">
+						<li><input type="submit" value="Send Message" /></li>
+					</ul>
+				</form>
+			</section>
+			<section class="split contact">
+
+				<section>
+					<h3>Email</h3>
+					<p><a href="#">crosbyreyes@outlook.com</a></p>
+				</section>
+				<section>
+					<h3>Social</h3>
+					<ul class="icons alt">
+
+						<li><a href="https://www.youtube.com/@crosbybiOfficial" class="icon brands alt fa-youtube"
+								target="_blank" rel="noopener noreferrer"><span class="label">YouTube</span></a></li>
+						<li><a href="https://bcreyes-data.github.io/crosbybi-website/" class="icon solid alt fa-briefcase"
+								target="_blank" rel="noopener noreferrer"><span class="label">Crosby BI</span></a></li>
+						<li><a href="https://www.linkedin.com/in/brandoncrosbyreyes" class="icon brands alt fa-linkedin"
+								target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/breyes87/brandon_portfolio" class="icon brands alt fa-github"
+								target="_blank" rel="noopener noreferrer"><span class="label">GitHub</span></a></li>
+
+
+					</ul>
+				</section>
+			</section>
+		</footer>
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<ul>
+				<li>&copy; Untitled</li>
+				<li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
