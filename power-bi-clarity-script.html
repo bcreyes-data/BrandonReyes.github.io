@@ -74,25 +74,19 @@
 				
 				<h2>A Gentle Script for Instant Clarity</h2>
 				<p>This simple C# script works within Tabular Editor to review all the numeric columns in your model and set them to "Don't Summarize," all in one go.</p>
-<pre><code>// Find all numeric columns with summarization enabled and set to "Don't Summarize"
-var columnsToChange = Model.AllColumns
-    .Where(c => c.SummarizeBy != AggregateFunction.None &&
-           (c.DataType == DataType.Int64 ||
-            c.DataType == DataType.Double ||
-            c.DataType == DataType.Decimal ||
-            c.DataType == DataType.Integer))
+<pre><code>// Find all columns with summarization enabled and set to "Don't Summarize"
+var columnsWithSummarization = Model.AllColumns
+    .Where(c => c.SummarizeBy != AggregateFunction.None)
     .ToList();
 
-// Set them to "Don't Summarize"
-foreach(var column in columnsToChange)
+// Set all to "Don't Summarize" - NO output inside the loop
+foreach(var column in columnsWithSummarization)
 {
     column.SummarizeBy = AggregateFunction.None;
-    // Log the change quietly to the output pane
-    Output($"Disabled summarization on: {column.DaxObjectFullName}");
 }
 
-// Single confirmation message at the end
-Info($"Process complete. Reviewed and updated {columnsToChange.Count} numeric columns to 'Don't Summarize'.");</code></pre>
+// Single pop-up at the end with summary
+Info("Complete! Changed {columnsWithSummarization.Count} columns to 'Don't Summarize'.");</code></pre>
 				
 				<h3>How to Use This Script:</h3>
 				<ol>
