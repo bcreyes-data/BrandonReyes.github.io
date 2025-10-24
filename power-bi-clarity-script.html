@@ -72,8 +72,8 @@
 				<div class="image main"><img src="images/power-bi-clarity-tabular-editor.png" alt="Illustration for tidying up a Power BI model using Tabular Editor" /></div>
 				<p>If you've spent some time in Power BI, you might have noticed how it automatically summarizes number columns. While well-intentioned and sometimes helpful, in my experience, I've found it best to turn these off and instead, create measures for any summarizations I need.  I could go into the reasoning behind why I recommend this approach, but I'll leave that for another blog post.  But here's the problem.  If you have a lot of columns that have summarization on, it will take time to go down the line, disabling summarization for each one. Thanksfully, there's a way to turn off summarization for all of them in one swipe using Tabular Editor (which you can download <a href="https://tabulareditor.com/" target="_blank" rel="noopener noreferrer">here</a>) and a simple script.</p>
 				
-				<h2>A Gentle Script for Instant Clarity</h2>
-				<p>This simple C# script works within Tabular Editor to review all the numeric columns in your model and set them to "Don't Summarize," all in one go.</p>
+				<h2>A Script for Instant Clarity</h2>
+				<p>This simple C# script works within Tabular Editor to review columns in your model and set them to "Don't Summarize," all in one go.</p>
 <pre><code>// Find all columns with summarization enabled and set to "Don't Summarize"
 var columnsWithSummarization = Model.AllColumns
     .Where(c => c.SummarizeBy != AggregateFunction.None)
@@ -86,7 +86,7 @@ foreach(var column in columnsWithSummarization)
 }
 
 // Single pop-up at the end with summary
-Info("Complete! Changed {columnsWithSummarization.Count} columns to 'Don't Summarize'.");</code></pre>
+Info("Complete! Changed Columns with Summarization to 'Don't Summarize'.");</code></pre>
 				
 				<h3>How to Use This Script:</h3>
 				<ol>
